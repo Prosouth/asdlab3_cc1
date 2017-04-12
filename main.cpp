@@ -37,7 +37,8 @@ private:
     value_type data;
     Node* next;
     Node(const_reference data, Node* next = nullptr)
-    : data(data), next(next) {
+    : data(data), next(next) 
+    {
       cout << "(C" << data << ") ";
     }
     Node(Node&) = delete;
@@ -231,7 +232,8 @@ public:
 };
 
 template <typename T>
-ostream& operator << (ostream& os, const LinkedList<T>& liste) {
+ostream& operator << (ostream& os, const LinkedList<T>& liste) 
+{
   os << liste.size() << ": ";
   auto n = liste.head;
   while (n) {
@@ -239,4 +241,10 @@ ostream& operator << (ostream& os, const LinkedList<T>& liste) {
     n = n->next;
   }
   return os;
+}
+
+
+int main()
+{
+    return EXIT_SUCCESS;
 }
