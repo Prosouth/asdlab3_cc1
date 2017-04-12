@@ -146,12 +146,12 @@ public:
    */
   reference front() 
   {
-    /* ... */
+      return this->at(0);
   }
 
   const_reference front() const 
   {
-    /* ... */
+      return this->at(0);
   }
 
 public:
