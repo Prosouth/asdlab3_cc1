@@ -194,6 +194,17 @@ public:
   reference at(size_t pos) 
   {
     /* ... */
+    if (head == nullptr or pos > (nbElements - 1))
+    {
+        throw out_of_range("LinkedList::at");
+    }
+
+    Node* cur = head;
+    for (size_t i = 0; i < pos; ++i)
+    {
+        cur = cur->next;
+    }
+    return cur;
   }
   
   /**
@@ -208,6 +219,17 @@ public:
   const_reference at(size_t pos) const 
   {
     /* ... */
+    if (head == nullptr or pos > (nbElements - 1))
+    {
+        throw out_of_range("LinkedList::at");
+    }
+
+    Node* cur = head;
+    for (size_t i = 0; i < pos; ++i)
+    {
+        cur = cur->next;
+    }
+    return cur;
   }
   
 public:
