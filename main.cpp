@@ -242,7 +242,15 @@ public:
    */
   void erase( size_t pos ) 
   {
-    /* ... */
+    if (head == nullptr or pos > (nbElements - 1))
+    {
+        throw out_of_range("LinkedList::erase");
+    }
+    Node* cur = this->at(pos);
+    Node* prev = this->at(pos - 1);
+    prev.next = cur.next;
+    delete cur;
+    nbElements--;
   }
   
 public:
