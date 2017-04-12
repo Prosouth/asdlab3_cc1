@@ -6,18 +6,19 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
 using namespace std;
 
 /// Forward declaration classe
-template < typename T > class LinkedList;
+template <typename T> class LinkedList;
 
 /// Forward declaration fonction d'affichage
 template <typename T>
 ostream& operator << (ostream& os, const LinkedList<T>& liste);
 
 /// Classe de liste chainee
-template < typename T > class LinkedList {
-  
+template <typename T> class LinkedList 
+{
   friend ostream& operator << <T>(ostream& os, const LinkedList<T>& liste);
   
 public:
@@ -67,7 +68,9 @@ public:
    *
    */
   LinkedList() /* ... */
-  { /* ... */ }
+  { /* ... */ 
+  
+  }
 
 public:
   /**
@@ -75,7 +78,8 @@ public:
    *
    *  @param other la LinkedList à copier
    */
-  LinkedList( LinkedList& other ) /* ... */ {
+  LinkedList(LinkedList& other) /* ... */ 
+  {
      /* ... */
   }
 
@@ -93,7 +97,8 @@ public:
    *  @remark le contenu précédent de la LinkedList courante est 
    *  effacé.
    */
-  LinkedList& operator= ( const LinkedList& other ) {
+  LinkedList& operator = (const LinkedList& other) 
+  {
     /* ... */
     return *this;
   }
@@ -102,7 +107,8 @@ public:
   /**
    *  @brief destructeur
    */
-  ~LinkedList() {
+  ~LinkedList() 
+  {
     /* ... */
   }
   
@@ -112,8 +118,9 @@ public:
    *
    *  @return nombre d'éléments. 
    */
-  size_t size() const noexcept {
-    /* ... */
+  size_t size() const noexcept 
+  {
+      return nbElements;
   }
   
 public:
@@ -124,7 +131,8 @@ public:
    *
    *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
    */
-  void push_front( const_reference value) {
+  void push_front( const_reference value) 
+  {
     /* ... */
   }
   
@@ -136,11 +144,13 @@ public:
    *
    *  @exception std::runtime_error si la liste est vide
    */
-  reference front() {
+  reference front() 
+  {
     /* ... */
   }
 
-  const_reference front() const {
+  const_reference front() const 
+  {
     /* ... */
   }
 
@@ -150,7 +160,8 @@ public:
    *
    *  @exception std::runtime_error si la liste est vide
    */
-  void pop_front( ) {
+  void pop_front() 
+  {
     /* ... */
   }
   
@@ -165,7 +176,8 @@ public:
    *
    *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
    */
-  void insert( const_reference value, size_t pos ) {
+  void insert(const_reference value, size_t pos) 
+  {
     /* ... */
   }
   
@@ -179,7 +191,8 @@ public:
    *
    *  @return une reference a l'element correspondant dans la liste
    */
-  reference at(size_t pos) {
+  reference at(size_t pos) 
+  {
     /* ... */
   }
   
@@ -192,7 +205,8 @@ public:
    *
    *  @return une const_reference a l'element correspondant dans la liste
    */
-  const_reference at(size_t pos) const {
+  const_reference at(size_t pos) const 
+  {
     /* ... */
   }
   
@@ -204,7 +218,8 @@ public:
    *
    *  @exception std::out_of_range("LinkedList::erase") si pos non valide
    */
-  void erase( size_t pos ) {
+  void erase( size_t pos ) 
+  {
     /* ... */
   }
   
@@ -218,14 +233,16 @@ public:
    *  @return la position dans la liste. -1 si la valeur
       n'est pas trouvée
    */
-  size_t find( const_reference value ) const noexcept {
+  size_t find( const_reference value ) const noexcept 
+  {
     /* ... */
   }
   
   /**
    *  @brief Tri des elements de la liste par tri fusion
    */
-  void sort() {
+  void sort() 
+  {
     /* ... */
   }
   
