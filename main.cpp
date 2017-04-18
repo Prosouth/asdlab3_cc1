@@ -60,16 +60,16 @@ private:
   /**
    *  @brief Nombre d'éléments
    */
-  size_t nbElements;
+  value_type nbElements;
   
 public:
   /**
    *  @brief Constructeur par défaut. Construit une LinkedList vide
    *
    */
-  LinkedList() /* ... */
-  { /* ... */ 
-  
+  LinkedList() 
+  { 
+      head = nullptr;
   }
 
 public:
@@ -133,7 +133,10 @@ public:
    */
   void push_front( const_reference value) 
   {
-    /* ... */
+      Node newNode;
+      newNode.data = value;
+      newNode.next = head;
+      head = newNode;
   }
   
 public:
@@ -146,12 +149,12 @@ public:
    */
   reference front() 
   {
-    /* ... */
+      this->at(0);
   }
 
   const_reference front() const 
   {
-    /* ... */
+      this->at(0);
   }
 
 public:
@@ -228,6 +231,7 @@ public:
     for (size_t i = 0; i < pos; ++i)
     {
         cur = cur->next;
+        
     }
     return cur;
   }
@@ -242,7 +246,7 @@ public:
    */
   void erase( size_t pos ) 
   {
-    /* ... */
+      this->at();
   }
   
 public:
