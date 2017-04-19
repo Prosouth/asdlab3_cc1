@@ -99,7 +99,7 @@ public:
    */
   LinkedList& operator = (const LinkedList& other) 
   {
-    /* ... */
+    
     return *this;
   }
   
@@ -109,7 +109,13 @@ public:
    */
   ~LinkedList() 
   {
-    /* ... */
+      Node* current = head;
+      while(current != nullptr)
+      {
+          Node* next = current->next;
+          delete current;
+          current = next;
+      }
   }
   
 public:
@@ -131,7 +137,7 @@ public:
    *
    *  @exception std::bad_alloc si pas assez de mémoire, où toute autre exception lancée par la constructeur de copie de value_type
    */
-  void push_front( const_reference value) 
+  void push_front(const_reference value) 
   {
       Node newNode;
       newNode.data = value;
@@ -149,12 +155,12 @@ public:
    */
   reference front() 
   {
-      this->at(0);
+      return this->at(0);
   }
 
   const_reference front() const 
   {
-      this->at(0);
+      return this->at(0);
   }
 
 public:
@@ -165,7 +171,7 @@ public:
    */
   void pop_front() 
   {
-    /* ... */
+      
   }
   
 public:
@@ -244,7 +250,7 @@ public:
    *
    *  @exception std::out_of_range("LinkedList::erase") si pos non valide
    */
-  void erase( size_t pos ) 
+  void erase(size_t pos) 
   {
       this->at();
   }
@@ -259,7 +265,7 @@ public:
    *  @return la position dans la liste. -1 si la valeur
       n'est pas trouvée
    */
-  size_t find( const_reference value ) const noexcept 
+  size_t find(const_reference value) const noexcept 
   {
     /* ... */
   }
