@@ -187,7 +187,21 @@ public:
    */
   void insert(const_reference value, size_t pos) 
   {
-    /* ... */
+      size_t tracker = 0;
+      if(pos = 0)
+      {
+          push_front(value);
+      }
+      else
+      {
+          while(pos != tracker)
+          {
+              // on itère jusqu'au bon élément
+              
+          }
+          Node* newNode;
+          
+      }
   }
   
 public:
