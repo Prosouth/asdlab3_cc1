@@ -172,6 +172,7 @@ public:
    */
   void pop_front() 
   {
+      //manque le chainage de head à l'élément en position 1 ! ??
       nbElements--;
   }
   
@@ -189,7 +190,7 @@ public:
   void insert(const_reference value, size_t pos) 
   {
       size_t tracker = 0;
-      if(pos = 0)
+      if(pos == 0)
       {
           push_front(value);
       }
@@ -228,7 +229,7 @@ public:
     {
         cur = cur->next;
     }
-    //return cur;
+    //return (cur*);
   }
   
   /**
@@ -254,7 +255,7 @@ public:
         cur = cur->next;
         
     }
-    return cur;
+    //return cur;
   }
   
 public:
