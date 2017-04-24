@@ -139,9 +139,9 @@ public:
    */
   void push_front(const_reference value) 
   {
-      Node newNode;
-      newNode.data = value;
-      newNode.next = head;
+      Node* newNode;
+      newNode->data = value;
+      newNode->next = head;
       head = newNode;
       nbElements++;
   }
@@ -228,7 +228,7 @@ public:
     {
         cur = cur->next;
     }
-    return cur;
+    //return cur;
   }
   
   /**
@@ -271,10 +271,10 @@ public:
     {
         throw out_of_range("LinkedList::erase");
     }
-    Node* cur = this->at(pos);
+   /* Node* cur = this->at(pos);
     Node* prev = this->at(pos - 1);
-    prev.next = cur.next;
-    delete cur;
+    prev->next = cur->next;
+    delete cur;*/
     nbElements--;
   }
   
