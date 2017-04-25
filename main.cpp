@@ -70,6 +70,7 @@ public:
   LinkedList() 
   { 
       head = nullptr;
+      nbElements = 0;
   }
 
 public:
@@ -78,9 +79,8 @@ public:
    *
    *  @param other la LinkedList à copier
    */
-  LinkedList(LinkedList& other) /* ... */ 
+  LinkedList(LinkedList& other) // cc2 et +
   {
-     /* ... */
   }
 
 public:
@@ -97,10 +97,10 @@ public:
    *  @remark le contenu précédent de la LinkedList courante est 
    *  effacé.
    */
-  LinkedList& operator = (const LinkedList& other) 
+  LinkedList& operator = (const LinkedList& other) // cc2 et +
   {
-    
-    return *this;
+    //allocation dynamique page 28
+    //return *this;
   }
   
 public:
@@ -112,10 +112,11 @@ public:
       Node* current = head;
       while(current != nullptr)
       {
-          Node* next = current->next;
-          delete current;
-          current = next;
+          Node* newNode = current;
+          current = newNode->next;
+          delete newNode;
       }
+      nbElements = 0;
   }
   
 public:
@@ -139,9 +140,8 @@ public:
    */
   void push_front(const_reference value) 
   {
-      Node* newNode;
-      newNode->data = value;
-      newNode->next = head;
+      // Si pas assez de mémoire, bad_alloc est automatiquement lancé
+      Node* newNode = new Node(value, head);
       head = newNode;
       nbElements++;
   }
@@ -156,12 +156,20 @@ public:
    */
   reference front() 
   {
-      return this->at(0);
+      if (head == nullptr)
+      {
+          throw runtime_error("La liste est vide");
+      }
+      return head->data;
   }
 
   const_reference front() const 
   {
-      return this->at(0);
+      if (head == nullptr)
+      {
+          throw runtime_error("La liste est vide");
+      }
+      return head->data;
   }
 
 public:
@@ -173,6 +181,14 @@ public:
   void pop_front() 
   {
       //manque le chainage de head à l'élément en position 1 ! ??
+      if (head == nullptr)
+      {
+          throw runtime_error("La liste est vide");
+      }
+
+      Node* tmp = new Node(head->data);
+      head = head->next;
+      delete tmp;
       nbElements--;
   }
   
@@ -189,20 +205,30 @@ public:
    */
   void insert(const_reference value, size_t pos) 
   {
-      size_t tracker = 0;
-      if(pos == 0)
+      if (pos < 0 or pos > nbElements)
       {
-          push_front(value);
+          throw out_of_range("LinkedList::insert");
+      }
+
+      Node* prev = head;
+      Node* cur = head;
+      size_t counter = 1;
+
+      if (pos == 0)
+      {
+          this->push_front(value);
       }
       else
       {
-          while(pos != tracker)
+          while (cur != nullptr && counter != pos)
           {
-              // on itère jusqu'au bon élément
-              
+              cur = cur->next;
+              counter++;
           }
-          Node* newNode;
-          
+
+          Node* nodeToInsert = new Node(value, cur->next);
+          cur->next = nodeToInsert;
+          nbElements++;
       }
   }
   
@@ -218,7 +244,6 @@ public:
    */
   reference at(size_t pos) 
   {
-    /* ... */
     if (head == nullptr or pos > (nbElements - 1))
     {
         throw out_of_range("LinkedList::at");
@@ -229,7 +254,7 @@ public:
     {
         cur = cur->next;
     }
-    //return (cur*);
+    return cur->data;
   }
   
   /**
@@ -243,7 +268,6 @@ public:
    */
   const_reference at(size_t pos) const 
   {
-    /* ... */
     if (head == nullptr or pos > (nbElements - 1))
     {
         throw out_of_range("LinkedList::at");
@@ -255,7 +279,7 @@ public:
         cur = cur->next;
         
     }
-    //return cur;
+    return cur->data;
   }
   
 public:
@@ -268,15 +292,33 @@ public:
    */
   void erase(size_t pos) 
   {
-    if (head == nullptr or pos > (nbElements - 1))
-    {
-        throw out_of_range("LinkedList::erase");
-    }
-   /* Node* cur = this->at(pos);
-    Node* prev = this->at(pos - 1);
-    prev->next = cur->next;
-    delete cur;*/
-    nbElements--;
+      Node* tmp = head;
+      Node* cur = head;
+      Node* nodeToErase = nullptr;
+      size_t counter = 0;
+
+      if (pos == 0)
+      {
+          head == nullptr;
+      }
+      else
+      {
+          while (cur != nullptr && counter != pos)
+          {
+              tmp = cur;
+              cur = cur->next;
+              counter++;
+          }
+
+          if (pos == counter)
+          {
+              nodeToErase = cur;
+              cur = cur->next;
+              tmp->next = cur;
+              delete nodeToErase;
+              nbElements--;
+          }
+      }
   }
   
 public:
@@ -289,7 +331,7 @@ public:
    *  @return la position dans la liste. -1 si la valeur
       n'est pas trouvée
    */
-  size_t find(const_reference value) const noexcept 
+  size_t find(const_reference value) const noexcept // cc2 et +
   {
     /* ... */
   }
@@ -297,7 +339,7 @@ public:
   /**
    *  @brief Tri des elements de la liste par tri fusion
    */
-  void sort() 
+  void sort()  // cc2 et +
   {
     /* ... */
   }
